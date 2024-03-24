@@ -3,7 +3,6 @@ import os
 import numpy as np
 from datetime import date
 
-
 today = date.today()
 d4 = today.strftime("%d-%b-%Y")
 print (d4)
@@ -96,6 +95,7 @@ process_folder(dPCR_dir)
 # Process the 'dPCR_dir2' folder
 process_folder(dPCR_dir2)
 
+# Append the two dataframes and merge with join table
 df = pd.DataFrame()
 df2 = pd.DataFrame()
 #edit the date
