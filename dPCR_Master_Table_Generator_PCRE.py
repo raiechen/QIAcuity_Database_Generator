@@ -41,8 +41,7 @@ def process_folder(folder_path):
 
     for f in paths:
         predata = pd.ExcelFile(f)
-    
-    
+        
         if "Results" in predata.sheet_names:
             data = pd.read_excel(f, "Results", skiprows=17, nrows=32, usecols='A:I')
             data2 = pd.read_excel(f, skiprows=4, nrows=100, usecols='A:Q')
@@ -91,7 +90,6 @@ def process_folder(folder_path):
     df.to_excel(excel_file_path1, index=False)
     new_df.to_excel(excel_file_path2, index=False)
      
-
 # Process the 'dPCR_dir' folder
 process_folder(dPCR_dir)
 
@@ -116,9 +114,7 @@ df5 = df5.drop_duplicates(subset=['Sample ID', 'Sample Description', 'experiment
 
 combined_df = df.append(df2, ignore_index=True)
 combined_join_df = df3.append(df4, ignore_index=True)
-
 combined_join_df = pd.merge(combined_join_df, df5, on=['Sample ID','Sample Description','experiment ID'], how='left')
-
 
 writer = pd.ExcelWriter('Combined_Master_Table.xlsx')
 writer2 = pd.ExcelWriter('Combined_Join_Table.xlsx')
