@@ -42,8 +42,10 @@ def process_folder(folder_path):
         predata = pd.ExcelFile(f)
         
         if "Results" in predata.sheet_names:
-            data = pd.read_excel(f, "Results", skiprows=17, nrows=32, usecols='A:I')
-            data2 = pd.read_excel(f, skiprows=4, nrows=100, usecols='A:Q')
+            #data = pd.read_excel(f, "Results", skiprows=17, nrows=32, usecols='A:I')
+            #data2 = pd.read_excel(f, skiprows=4, nrows=100, usecols='A:Q')
+            data = pd.read_excel(f, "Results", skiprows=17, usecols='A:I')
+            data2 = pd.read_excel(f, skiprows=4, usecols='A:Q')
             data3 = pd.read_excel(f, nrows=1, usecols='Q')
             data4 = pd.read_excel(f, nrows=1, usecols='B')
             data5 = pd.read_excel(f, nrows=1, usecols='G')
@@ -98,7 +100,7 @@ process_folder(dPCR_dir2)
 # Append the two dataframes and merge with join table
 df = pd.DataFrame()
 df2 = pd.DataFrame()
-#edit the date
+
 file_name = f'{os.path.basename(dPCR_dir)}_Master_Table_{d4}.xlsx'
 file_name2 = f'{os.path.basename(dPCR_dir2)}_Master_Table_{d4}.xlsx'
 file_name3 = f'{os.path.basename(dPCR_dir)}_Join_Table_{d4}.xlsx'
