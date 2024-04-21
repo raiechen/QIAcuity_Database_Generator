@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import numpy as np
 from datetime import date
+import re
 
 today = date.today()
 d4 = today.strftime("%d-%b-%Y")
@@ -59,6 +60,20 @@ def process_folder(folder_path):
                 # Assign the folderName and fileName to the data DataFrame
                 data['folderName'] = path_parts[-2]
                 data['fileName'] = path_parts[-1]
+                # Define the pattern to match TMD-xx-xx-xxxx
+                pattern = r'TMD-\d{2}-\d{2}-\d{4}'
+                # Extract the TMD string from the filename  
+                match = re.search(pattern, path_parts[-1])
+                if match:
+                    # If a match is found, extract it
+                    extracted_string = match.group()
+                else:
+                # If no match is found, handle accordingly
+                    extracted_string = "No match found"
+
+                # Add new column and assign TMD string
+                data['TMD'] = extracted_string
+ 
                 if 'Sample/NTC/Control' in data2.columns:
                     merdata = pd.merge(data, data2, left_on = 'Sample ID', right_on='Sample/NTC/Control', how='left')
                     #df = df.append(merdata)
