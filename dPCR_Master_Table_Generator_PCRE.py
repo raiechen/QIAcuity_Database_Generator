@@ -61,7 +61,7 @@ def process_folder(folder_path):
                 data['folderName'] = path_parts[-2]
                 data['fileName'] = path_parts[-1]
                 # Define the pattern to match TMD-xx-xx-xxxx
-                pattern = r'TMD-\d{2}-\d{2}-\d{4}'
+                pattern = r'TMD-\d+-\d+-\d+'
                 # Extract the TMD string from the filename  
                 match = re.search(pattern, path_parts[-1])
                 if match:
@@ -69,7 +69,7 @@ def process_folder(folder_path):
                     extracted_string = match.group()
                 else:
                 # If no match is found, handle accordingly
-                    extracted_string = "No match found"
+                    extracted_string = "No TMD found"
 
                 # Add new column and assign TMD string
                 data['TMD'] = extracted_string
