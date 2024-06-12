@@ -12,18 +12,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 st.title("dPCR Database Generator App")
 folder_path = st.text_input('Input folder path Mac user: /Volumes/us_ad_processed/QIAcuity-VIZ-Files')
+
 button = st.button("Generate dPCR Database")
-
-
-
-def file_selector(folder_path='.'):
-    filenames = os.listdir(folder_path)
-    selected_filename = st.selectbox('Select a file', filenames)
-    return os.path.join(folder_path, selected_filename)
-
-
-
-
 
 
 today = date.today()
